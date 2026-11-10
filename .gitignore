@@ -1,0 +1,13 @@
+node_modules/
+.next/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+!.env.*.example
+.pids/
+.playwright-cli/
+.codex/worktrees/
+*.log
+*.tsbuildinfo

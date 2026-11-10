@@ -1,0 +1,3 @@
+# Project conventions live in AGENTS.md; workflows live in .agents/skills.
+# Skills and their resources are bundled with this repository.
+# Inherit the user's model, permissions, MCP servers and ai-memory hooks.

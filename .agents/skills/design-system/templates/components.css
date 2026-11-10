@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--background); color: var(--foreground); font: var(--font-base)/var(--font-leading) var(--font-body); }
+main { max-width: var(--size-content); margin: auto; padding: var(--space-xl) var(--space-lg); }
+header, .row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); flex-wrap: wrap; }
+h1 { font-size: var(--font-title); line-height: 1.15; margin: var(--space-sm) 0; }
+h2 { margin-top: 0; }
+.muted, .eyebrow { color: var(--muted); }
+.eyebrow { font-size: var(--font-small); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); gap: var(--space-lg); margin-top: var(--space-xl); }
+section { padding: var(--space-lg); background: var(--surface); border: var(--border-width) solid var(--line); border-radius: var(--radius-panel); }
+button, input, select { font: inherit; min-height: var(--size-control); border-radius: var(--radius-control); padding: var(--space-sm) var(--space-md); }
+button { cursor: pointer; background: var(--accent); color: var(--on-accent); border: var(--border-width) solid var(--accent); transition: filter var(--motion-fast); }
+button:hover:not(:disabled) { filter: brightness(0.92); }
+button.secondary { background: var(--surface); color: var(--foreground); border-color: var(--line); }
+button:disabled { cursor: not-allowed; color: var(--muted); background: var(--background); border-color: var(--line); }
+:focus-visible { outline: var(--border-focus) solid var(--focus); outline-offset: var(--space-xs); }
+label { display: block; margin-top: var(--space-md); }
+input, select { width: 100%; color: var(--foreground); background: var(--surface); border: var(--border-width) solid var(--line); }
+[aria-invalid="true"] { border-color: var(--danger); }
+.error { color: var(--danger); } .success { color: var(--success); }
+.status { min-height: var(--size-control); margin-top: var(--space-md); }
+dialog { max-width: min(90vw, var(--size-content)); background: var(--surface); color: var(--foreground); border: var(--border-width) solid var(--line); border-radius: var(--radius-panel); padding: var(--space-lg); }
+@media (prefers-reduced-motion: reduce) { * { transition: none; } }

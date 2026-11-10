@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Protótipo local — adaptar à jornada</title>
+  <!-- Links para docs/FXX-slug/prototype/index.html. Ajustar para outro destino. -->
+  <link rel="stylesheet" href="../../design/tokens.css">
+  <link rel="stylesheet" href="../../design/components.css">
+</head>
+<body>
+<main>
+  <header><div><div class="eyebrow">PROTÓTIPO · DADOS SIMULADOS</div><h1>Objetivo da tela</h1><p class="muted">Substitua este conteúdo pelo contexto e pela tarefa do usuário.</p></div></header>
+  <div class="grid"><section aria-labelledby="task-title">
+    <h2 id="task-title">Ação principal de exemplo</h2>
+    <form id="task-form" novalidate><label for="task">Informação necessária</label><input id="task" required aria-describedby="result"><p id="result" role="status">Exemplo local. Nenhuma informação é enviada.</p><button type="submit">Simular conclusão</button></form>
+  </section><section aria-labelledby="preview-title"><h2 id="preview-title">Estados para revisão</h2><label for="preview-state">Estado demonstrado</label><select id="preview-state"><option value="empty">Vazio</option><option value="loading">Carregamento</option><option value="error">Erro</option><option value="success">Sucesso</option></select><p id="preview-result" role="status">Nenhum dado de exemplo disponível.</p></section></div>
+</main>
+<script>
+  const field = document.getElementById('task');
+  document.getElementById('task-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const valid = Boolean(field.value.trim());
+    field.setAttribute('aria-invalid', String(!valid));
+    document.getElementById('result').textContent = valid ? 'Conclusão simulada. Nenhum dado foi enviado.' : 'Preencha a informação necessária.';
+    if (!valid) field.focus();
+  });
+  const states = { empty: 'Nenhum dado de exemplo disponível.', loading: 'Carregando exemplo…', error: 'Falha simulada no carregamento.', success: 'Exemplo carregado com sucesso.' };
+  document.getElementById('preview-state').addEventListener('change', (event) => {
+    document.getElementById('preview-result').textContent = states[event.target.value];
+  });
+</script>
+</body>
+</html>

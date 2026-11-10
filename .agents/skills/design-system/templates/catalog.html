@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Catálogo local de componentes</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+</head>
+<body>
+<main>
+  <header>
+    <div><div class="eyebrow">REFERÊNCIA LOCAL · RASCUNHO</div><h1>Catálogo de componentes</h1><p class="muted">Tokens compartilhados, estados visíveis e exemplos editáveis.</p></div>
+    <button type="button" class="secondary" id="theme" aria-pressed="false">Tema escuro</button>
+  </header>
+  <div class="grid">
+    <section aria-labelledby="actions"><h2 id="actions">Ações</h2><p class="muted">Compare hierarquia, foco e disponibilidade.</p>
+      <div class="row"><button type="button" id="primary">Executar exemplo</button><button type="button" class="secondary" id="open-dialog">Abrir diálogo</button><button type="button" disabled>Indisponível</button></div>
+      <p id="action-result" role="status" class="status">Nenhuma ação executada.</p>
+    </section>
+    <section aria-labelledby="fields"><h2 id="fields">Entrada e validação</h2>
+      <form id="example-form" novalidate><label for="name">Nome de exemplo</label><input id="name" name="name" autocomplete="off" aria-describedby="field-message" required><p id="field-message" class="status" aria-live="polite">Preencha o campo para simular uma confirmação local.</p><button type="submit">Validar exemplo</button></form>
+    </section>
+    <section aria-labelledby="states"><h2 id="states">Estados de conteúdo</h2><label for="state">Estado demonstrado</label><select id="state"><option value="empty">Vazio</option><option value="loading">Carregando</option><option value="error">Erro</option><option value="success">Sucesso</option></select><p id="state-result" role="status" class="status">Nenhum item disponível neste exemplo.</p></section>
+    <section aria-labelledby="source"><h2 id="source">Uma fonte de tokens</h2><p>Edite <code>tokens.json</code>, gere <code>tokens.css</code> e revise os temas. Esta página usa apenas arquivos locais e fontes do sistema.</p><p class="muted">O kit não define a identidade visual do seu produto. Preencha MASTER.md e DESIGN.md antes de adotá-lo.</p></section>
+  </div>
+</main>
+<dialog id="example-dialog" aria-labelledby="dialog-title"><h2 id="dialog-title">Diálogo de exemplo</h2><p>Exemplo local: nenhuma informação é enviada.</p><form method="dialog"><button>Fechar diálogo</button></form></dialog>
+<script>
+  const byId = (id) => document.getElementById(id);
+  byId('theme').addEventListener('click', () => {
+    const dark = document.documentElement.dataset.theme !== 'dark';
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    byId('theme').setAttribute('aria-pressed', String(dark));
+  });
+  byId('primary').addEventListener('click', () => { byId('action-result').textContent = 'Ação local concluída.'; });
+  byId('open-dialog').addEventListener('click', () => { byId('example-dialog').showModal(); });
+  byId('example-form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const valid = Boolean(byId('name').value.trim());
+    byId('name').setAttribute('aria-invalid', String(!valid));
+    byId('field-message').textContent = valid ? 'Exemplo confirmado localmente.' : 'Informe um nome para continuar.';
+    byId('field-message').className = `status ${valid ? 'success' : 'error'}`;
+    if (!valid) byId('name').focus();
+  });
+  const messages = { empty: 'Nenhum item disponível neste exemplo.', loading: 'Carregando dados de demonstração…', error: 'Não foi possível carregar o exemplo. Tente novamente.', success: 'Dados de demonstração disponíveis.' };
+  byId('state').addEventListener('change', (event) => {
+    byId('state-result').textContent = messages[event.target.value];
+    byId('state-result').className = `status ${event.target.value}`;
+  });
+</script>
+</body>
+</html>
