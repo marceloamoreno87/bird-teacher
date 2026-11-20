@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="petroleo-dark"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bird Teacher · Catálogo visual</title><link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="components.css">
+<main><h1>Interface do Bird Teacher</h1>
+<label for="screen">Tela do aplicativo</label><select id="screen"><option value="conversa">Conversa pronta</option><option value="conversa-ativa">Conversa em andamento</option><option value="processando">Processando sessão</option><option value="compacto">Modo compacto</option><option value="historico">Sessões</option><option value="sessao-transcricao">Transcrição da sessão</option><option value="meu-ingles">Revisão de inglês</option></select>
+<figure><img id="preview" src="../F01-desktop/evidencias/conversa.png" alt="Conversa pronta no aplicativo Windows"><figcaption>Janela Swing com dados de demonstração.</figcaption></figure>
+<h2>Paleta dos componentes</h2><label for="palette">Paleta</label><select id="palette"><option value="petroleo">Petróleo</option><option value="mata">Floresta</option><option value="ardosia">Ardósia</option><option value="cobre">Cobre</option><option value="lagoa">Lagoa</option></select>
+<button id="mode" aria-pressed="false">Usar modo claro</button>
+<div class="samples"><span class="primary">Iniciar gravação</span><span class="mic">Você</span><span class="output">Áudio do fone</span></div>
+</main><script>
+const el=id=>document.getElementById(id);
+el('screen').onchange=()=>{const choice=el('screen');el('preview').src='../F01-desktop/evidencias/'+choice.value+'.png';el('preview').alt=choice.selectedOptions[0].textContent+' no aplicativo Windows';};
+let light=false;
+function update(){document.documentElement.dataset.theme=el('palette').value+'-'+(light?'light':'dark');el('mode').setAttribute('aria-pressed',String(light));el('mode').textContent=light?'Usar modo escuro':'Usar modo claro';}
+el('palette').onchange=update;el('mode').onclick=()=>{light=!light;update();};
+</script></html>

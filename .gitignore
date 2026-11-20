@@ -11,3 +11,5 @@ coverage/
 .codex/worktrees/
 *.log
 *.tsbuildinfo
+.gradle/
+**/build/

@@ -1,0 +1,28 @@
+plugins { id 'application' }
+dependencies {
+    implementation project(':core')
+    implementation 'com.formdev:flatlaf:3.8'
+    implementation 'com.formdev:flatlaf-extras:3.8'
+    implementation 'com.github.kwhat:jnativehook:2.2.2'
+}
+application {
+    mainClass = 'br.birdteacher.app.Main'
+    applicationName = 'bird-teacher'
+}
+
+// Swing and the visual catalogue share the same palette.
+def paletteFile = rootProject.file('docs/design/tokens.json')
+def paletteDir = layout.buildDirectory.dir('generated/palette')
+tasks.register('exportPalette') {
+    inputs.file(paletteFile)
+    outputs.dir(paletteDir)
+    doLast {
+        def tokens = new groovy.json.JsonSlurper().parse(paletteFile)
+        def lines = ["defaultTheme=" + tokens.defaultTheme]
+        tokens.themes.each { theme, roles -> roles.each { role, value -> lines << "${theme}.${role}=${value}" } }
+        def target = paletteDir.get().file('br/birdteacher/app/palette.properties').asFile
+        target.parentFile.mkdirs()
+        target.setText(lines.join('\n') + '\n', 'UTF-8')
+    }
+}
+sourceSets.main.resources.srcDir(tasks.named('exportPalette'))

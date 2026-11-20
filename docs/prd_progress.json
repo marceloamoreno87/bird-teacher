@@ -2,5 +2,96 @@
   "schema_version": 1,
   "prd_path": "docs/PRD.md",
   "generated_at": "2026-11-10T12:14:24Z",
-  "features": {}
+  "features": {
+    "F01": {
+      "name": "Aplicativo desktop",
+      "priority": 1,
+      "wave": 1,
+      "dependencies": [],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T15:19:18Z",
+      "updated_at": "2026-11-19T15:36:13Z",
+      "completed_at": null
+    },
+    "F02": {
+      "name": "Gravação e controle da sessão",
+      "priority": 1,
+      "wave": 2,
+      "dependencies": [
+        "F01"
+      ],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T15:19:18Z",
+      "updated_at": "2026-11-19T15:36:13Z",
+      "completed_at": null
+    },
+    "F03": {
+      "name": "Transcrição ao vivo",
+      "priority": 1,
+      "wave": 3,
+      "dependencies": [
+        "F02"
+      ],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T15:19:18Z",
+      "updated_at": "2026-11-19T15:36:13Z",
+      "completed_at": null
+    },
+    "F04": {
+      "name": "Revisão da conversa",
+      "priority": 1,
+      "wave": 4,
+      "dependencies": [
+        "F02",
+        "F03"
+      ],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T15:19:18Z",
+      "updated_at": "2026-11-19T15:36:13Z",
+      "completed_at": null
+    },
+    "F05": {
+      "name": "Feedback de inglês com Ollama",
+      "priority": 1,
+      "wave": 5,
+      "dependencies": [
+        "F04"
+      ],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T15:19:18Z",
+      "updated_at": "2026-11-19T15:36:13Z",
+      "completed_at": null
+    },
+    "F06": {
+      "name": "Treinar erros recorrentes",
+      "priority": 1,
+      "wave": 6,
+      "dependencies": [
+        "F04",
+        "F05"
+      ],
+      "status": "implemented",
+      "cycles": 0,
+      "failure_reason": null,
+      "report_path": null,
+      "started_at": "2026-11-19T18:36:08Z",
+      "updated_at": "2026-11-19T19:02:38Z",
+      "completed_at": null
+    }
+  }
 }
